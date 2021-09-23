@@ -1,0 +1,7 @@
+{
+    "files.associations": {
+        "*.cps": "javascript",
+        "sdl_timer.h": "c",
+        "vector": "c"
+    }
+}
