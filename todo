@@ -1,5 +1,5 @@
 impement json parsing
-
+refactor json format to be more consitant to compar to code so it does not fuck up lmao
 
 
 change speed to be based off of fps

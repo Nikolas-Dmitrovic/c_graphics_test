@@ -17,10 +17,10 @@ typedef struct{
     int number_of_animations;
     char *animations_folder;
     // dynamicly allocate the image information
-    char animation_images_left[1][100];
-    char animation_images_right[1][100];
-    char animation_images_forward[1][100];
-    char animation_images_backword[1][100];
+    char animation_images_left[20][100];
+    char animation_images_right[20][100];
+    char animation_images_forward[20][100];
+    char animation_images_backword[20][100];
 
     float starting_pos_y;
     float strating_pos_x;
@@ -40,11 +40,14 @@ typedef struct{
 typedef struct{
     char *npc_name;
     char *npc_dialoge_location;
-    int starting_pos[2];
-    int npc_rect_dim[2];
+    float starting_pos_x;
+    float starting_pos_y;
+
+    float npc_rect_dim_x;
+    float npc_rect_dim_y;
 
     // use for loops and shit to create array and assign it to this pointer
-    int *npc_movement_path;
+    int npc_movement_path[100][2];
     char *npc_trigger_index;
 }npc_info;
 
@@ -84,6 +87,7 @@ typedef struct{
 int parse_file();
 background parse_background_json();
 main_character parse_main_character_data();
+npc parse_npc();
 
 
 
