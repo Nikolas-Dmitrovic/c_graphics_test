@@ -39,8 +39,11 @@ int parse_file(char *filename, level *level_data){
     cJSON *json = cJSON_Parse(buffer);
     level_data->background_data = parse_background_json(json);
     level_data->main_character_data = parse_main_character_data(json);
+    level_data->npc_data = parse_npc(json);
+    level_data->trigger_data = parse_triggers(json);
+    
 
-    printf("%i", sizeof(buffer));
+    //printf("%i", sizeof(buffer));
 
 
 
@@ -175,6 +178,10 @@ npc parse_npc(cJSON *json){
     cJSON *number_of_npcs = cJSON_GetObjectItemCaseSensitive(npc_class, "number_of_npcs");
     cJSON *npc_information = cJSON_GetObjectItemCaseSensitive(npc_class, "npc_info");
 
+    npc_data.npc_info_data;
+    npc_info npc_list[number_of_npcs->valueint];
+    int external_count = 0;
+
     cJSON *temp = NULL;
     cJSON_ArrayForEach(temp, npc_information){
         npc_info npc1;
@@ -207,18 +214,80 @@ npc parse_npc(cJSON *json){
         cJSON_ArrayForEach(temp_movement, npc_movement_path_json){
             cJSON *temp_internal = NULL;
             cJSON_ArrayForEach(temp_internal, temp_movement){
-                npc_movement_path[movement_indexer][indexer_left_right] = temp_internal->valuedouble;
+                npc1.npc_movement_path[movement_indexer][indexer_left_right] = temp_internal->valuedouble;
                 if(indexer_left_right == 1) indexer_left_right = 0;
                 if(indexer_left_right == 0) indexer_left_right++;
             }
             movement_indexer++;
         };
 
+        npc1.npc_dialoge_location = npc_dialoge_location;
+        npc1.npc_name = npc_name;
 
-        
+        npc1.npc_rect_dim_x = npc_rect_dim_x;
+        npc1.npc_rect_dim_y = npc_rect_dim_y;
+        npc1.starting_pos_x = npc_rect_pos_x;
+        npc1.starting_pos_y = npc_rect_pos_y;
+
+        npc1.npc_trigger_index = npc_index;
+
+        if(external_count <= number_of_npcs->valueint) npc_list[external_count] = npc1;
+        external_count++;
 
     }
+
+    npc_data.number_of_npcs = number_of_npcs->valueint;
+    npc_data.npc_info_data = npc_list;
+
+
+
+    return npc_data;
 }
+
+trigger_list parse_triggers(cJSON *json){
+    trigger_list trigger_data;
+
+    cJSON *triggers_json = cJSON_GetObjectItemCaseSensitive(json,"triggers");
+
+    cJSON *triggers_exist_json = cJSON_GetObjectItemCaseSensitive(triggers_json, "trigger_exists");
+    cJSON *number_of_triggers_json = cJSON_GetObjectItemCaseSensitive(triggers_json, "number_of_triggers");
+
+    cJSON *temp_trigger = NULL;
+    trigger trigger_list[number_of_triggers_json->valueint];
+    int indexer = 0;
+    cJSON_ArrayForEach(temp_trigger, triggers_json){
+        cJSON *temp_internal = NULL;
+
+        cJSON *type_json = cJSON_GetObjectItemCaseSensitive(temp_trigger,"type");
+        cJSON *pos_x = cJSON_GetObjectItemCaseSensitive(temp_trigger, "pos_x");
+        cJSON *pos_y = cJSON_GetObjectItemCaseSensitive(temp_trigger, "pos_y");
+        cJSON *dim_x = cJSON_GetObjectItemCaseSensitive(temp_trigger, "dim_x");
+        cJSON *dim_y = cJSON_GetObjectItemCaseSensitive(temp_trigger, "dim_y");
+        cJSON *trigger_event = cJSON_GetObjectItemCaseSensitive(temp_trigger, "trigger_event");
+
+
+        trigger trigger1;
+
+        trigger1.type = type_json->valuestring;
+        trigger1.trigger_event = trigger_event->valuestring;
+        trigger1.pos_x = pos_x->valuedouble;
+        trigger1.pos_y = pos_y->valuedouble;
+        trigger1.dim_x = dim_x->valuedouble;
+        trigger1.dim_y = dim_y->valuedouble;
+
+        if(indexer <= number_of_triggers_json->valueint) trigger_list[indexer] = trigger1;
+        indexer++;
+    }
+
+    trigger_data.number_of_triggers = number_of_triggers_json->valueint;
+    trigger_data.trigger_exist = triggers_exist_json->valueint;
+    trigger_data.trigger_list = trigger_list;
+
+    return trigger_data;
+
+};
+
+
 
 
 int main(){

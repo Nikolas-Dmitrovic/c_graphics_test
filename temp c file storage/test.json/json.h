@@ -54,7 +54,7 @@ typedef struct{
 
 typedef struct{
     int number_of_npcs;
-    npc_info npc_info_data[];
+    npc_info *npc_info_data;
 
 
 }npc;
@@ -62,8 +62,11 @@ typedef struct{
 typedef struct{
     char *type;
 
-    int cords[2];
-    int dims[2];
+    float pos_x;
+    float pos_y;
+    
+    float dim_x;
+    float dim_y;
     
     char *trigger_event;
 
@@ -88,6 +91,7 @@ int parse_file();
 background parse_background_json();
 main_character parse_main_character_data();
 npc parse_npc();
+trigger_list parse_triggers();
 
 
 
