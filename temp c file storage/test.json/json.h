@@ -87,7 +87,7 @@ typedef struct{
 }level;
 
 
-int parse_file();
+level parse_file();
 background parse_background_json();
 main_character parse_main_character_data();
 npc parse_npc();
