@@ -5,6 +5,8 @@
 #include"main.h"
 #include"movement.h"
 #include"loader.h"
+#include"json.h"
+#include"trigger.h"
 
 
 int main(int argc, char* argv[]){
@@ -13,7 +15,7 @@ int main(int argc, char* argv[]){
         printf("Error initializing SDL%s\n", SDL_GetError()); //
         return 1;
     }
-    SDL_Window* win =SDL_CreateWindow("hello c99",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED, 640,460,0); 
+    SDL_Window* win =SDL_CreateWindow("hello c99",SDL_WINDOWPOS_CENTERED,SDL_WINDOWPOS_CENTERED,WINDOW_WIDTH, WINDOW_HEIGHT,0); 
 
     if(!win){
         printf("error creating window %s\n", SDL_GetError());
@@ -31,14 +33,11 @@ int main(int argc, char* argv[]){
     }
 
 
+    level level1 = parse_file("level_data.json");
     // struct to hold position and size of sprite
+    imageLoad image1 = load(rend,win,level1.background_data.file_name, 4);
 
-    imageLoad image1 = load(rend,win,"download.png", 40);
-
-    SDL_Rect dest1 = image1.rect;
-    SDL_Texture* tex1 = image1.texture;
-
-    imageLoad image2 = load(rend,win,"sprite_standing.png", 4);
+    imageLoad image2 = load(rend,win,level1.main_character_data.file_name, 4);
     SDL_Rect dest = image2.rect;
     SDL_Texture* tex = image2.texture;
 
@@ -48,15 +47,14 @@ int main(int argc, char* argv[]){
     // position the sprite at the bottom center of the window
     //origin is the top left corner, positive y is down
     vectorPos points;
-    points.x_pos = 1;
-    points.x_pos = (WINDOW_WIDTH - dest.w)/2;
-    points.y_pos = (WINDOW_HEIGHT - dest.y)/2;
+    points.x_pos = (WINDOW_WIDTH - image2.rect.w)/2;
+    points.y_pos = (WINDOW_HEIGHT - image2.rect.y)/2;
     points.y_vel = 0;
     points.x_vel = 0;
 
 
-    dest.x = points.x_pos;
-    dest.y = points.y_pos;
+    image2.rect.x = points.x_pos;
+    image2.rect.y = points.y_pos;
 
     // keep track of wich inputs given
     directions dir;
@@ -64,6 +62,7 @@ int main(int argc, char* argv[]){
     dir.down = 0;
     dir.left = 0;
     dir.right = 0;
+
     //set 1 to close window when x is pressed
     int close_requested = 0;
 
@@ -89,11 +88,16 @@ int main(int argc, char* argv[]){
         SDL_RenderClear(rend);
 
 
+        printf("%i \n", image2.rect.x);
+        image1.rect.x = 89;
+        image1.rect.y = 410;
         //draw image to window
-        SDL_RenderCopy(rend, tex1, NULL, &dest1);
-        // SDL_RenderPresent(rend);
+        printf("%i \n", image2.rect.x);
+        SDL_RenderCopy(rend,image1.texture, NULL, NULL);
+        //SDL_RenderPresent(rend);
 
-        SDL_RenderCopy(rend,tex, NULL, &dest);
+        //printf("%i \n", dest1.y);
+        SDL_RenderCopy(rend,image2.texture, NULL, &dest);
         SDL_RenderPresent(rend);
 
 

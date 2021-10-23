@@ -7,15 +7,15 @@
       "movable": false
     },
     "main_character": {
-      "defultimage": "",
-      "number of animations": 1,
-      "animations folder": "characters",
-      "animation images left": "sprite_standing_left.png",
-      "animation images right": [],
-      "animation images forward": [],
-      "animation images back": [],
-      "starting_positionx": 960,
-      "starting_positiony": 540,
+      "defult_image": "",
+      "number_of_animations": 1,
+      "animations_folder": "characters",
+      "animation_images_left": "sprite_standing_left.png",
+      "animation_images_right": [],
+      "animation_images_forward": [],
+      "animation_images_back": [],
+      "starting_pos_y": 960,
+      "starting_pos_x": 540,
       "rect_dim_x": 10,
       "rect_dim_y": 10,
       "file_location": "characters",
@@ -28,79 +28,29 @@
       "number_of_npcs": 0,
       "npc_info": {
         "npc1": {
-          "npc_name": "",
+          "npc_name": "test",
           "npc_dialog_file_location": "",
-          "npcStartPosition": [100,100],
-          "npcRectDim": [10,10],
+          "npc_rect_dim_x": 100,
+          "npc_rect_dim_y":100,
+          "npc_rect_pos_x": 10,
+          "npc_rect_pos_y":10,
           "npc_movement_path": [[0,0],[12,13]],
-          "npc_trigger_event_index": ""
+          "npc_index": ""
         }
       }
     },
     "triggers": {
-      "triggers_exist": true,
-      "number of triggers": 1,
+      "triggers_exist": 0,
+      "number_of_triggers": 1,
+      "trigger list":["1"],
       "triggers_info": {
-        "trig one": {
+        "1": {
           "type": "collison",
-          "cords": [300,520],
-          "dims": [254,80],
+          "pos_x": 300,
+          "pos_y": 520,
+          "dim_x": 254,
+          "dim_y": 80,
           "trigger_event": null
-        },
-        "trig two": {
-          "type": "collison",
-          "cords": [1170,530],
-          "dims": [180,55],
-          "trigger_event": null
-        },
-        "trig three": {
-          "type": "collison",
-          "cords": [1495,525],
-          "dims": [180,60],
-          "trigger_event": null
-        },
-        "trig four": {
-          "type": "collison",
-          "cords": [325,765],
-          "dims": [200,60],
-          "trigger_event": null
-        },
-        "trig five": {
-          "type": "collison",
-          "cords": [1170,760],
-          "dims": [200,65],
-          "trigger_event": null
-        },
-        "trig six": {
-          "type": "collison",
-          "cords": [1490,765],
-          "dims": [185,60],
-          "trigger_event": null
-        },
-        "trig seven": {
-          "type": "collison",
-          "cords": [1495,525],
-          "dims": [180,60],
-          "triggerevent": null
-        },
-        "trig eight": {
-          "type": "collison",
-          "cords": [425,235],
-          "dims": [1300,115],
-          "triggerevent": null
-        }
-      },
-      "events": {
-        "one": {
-          "type": "trigger",
-          "reckt": [123,123,10,10]
-        },
-        "two": {
-          "type": "onLevelStart",
-          "path": [
-            [12,32],
-            [123,455]
-          ]
         }
       }
     },

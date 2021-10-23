@@ -2,6 +2,7 @@
     "files.associations": {
         "*.cps": "javascript",
         "sdl_timer.h": "c",
-        "vector": "c"
+        "vector": "c",
+        "sdl_image.h": "c"
     }
 }

@@ -37,7 +37,7 @@ level parse_file(char *filename){
     level_data.main_character_data = parse_main_character_data(json);
     level_data.npc_data = parse_npc(json);
     level_data.trigger_data = parse_triggers(json);
-    
+
     return level_data;
 };
 
@@ -118,7 +118,6 @@ main_character parse_main_character_data(cJSON *json){
     cJSON *image_scale_y;
     cJSON *image_rotation;
 
-
     main_character_class = cJSON_GetObjectItemCaseSensitive(json, "main_character");
 
     defult_image = cJSON_GetObjectItemCaseSensitive(main_character_class, "defult_image");
@@ -150,21 +149,23 @@ main_character parse_main_character_data(cJSON *json){
     image_scale_x = cJSON_GetObjectItemCaseSensitive(main_character_class, "image_scale_x");
     image_scale_y = cJSON_GetObjectItemCaseSensitive(main_character_class, "image_scale_y");
     image_rotation = cJSON_GetObjectItemCaseSensitive(main_character_class, "image_rotation");
+    
 
     main_character_data.animations_folder = animations_folder->valuestring;
     main_character_data.defult_image = defult_image->valuestring;
     main_character_data.file_location  = file_location->valuestring;
-
+    main_character_data.file_name = file_name->valuestring;
+    
     main_character_data.image_rotation = image_rotation->valuedouble;
     main_character_data.image_scale_x = image_scale_x->valuedouble;
     main_character_data.image_scale_y = image_scale_y->valuedouble;
-
+    
 
     main_character_data.number_of_animations = number_of_animations->valueint;
-
+    
     main_character_data.rect_dim_x = rect_dim_x->valueint;
     main_character_data.rect_dim_y = rect_dim_y->valueint;
-
+    
     main_character_data.starting_pos_y = starting_pos_y->valuedouble;
     main_character_data.strating_pos_x = starting_pos_x->valuedouble;
 
@@ -253,7 +254,6 @@ trigger_list parse_triggers(cJSON *json){
     cJSON *number_of_triggers_json = cJSON_GetObjectItemCaseSensitive(triggers_json, "number_of_triggers");
     cJSON *trigger_info_json = cJSON_GetObjectItemCaseSensitive(triggers_json, "triggers_info");
     cJSON *trigger_name_list = cJSON_GetObjectItemCaseSensitive(triggers_json,"trigger list");
-    //if(trigger_name_list == NULL) printf("null");
 
 
     cJSON *temp_trigger = NULL;
@@ -286,13 +286,13 @@ trigger_list parse_triggers(cJSON *json){
         
     }
 
-    printf("%s", trigger_list[0].type);
+    
     trigger_data.number_of_triggers = number_of_triggers_json->valueint;
-    printf("1");
+    
     trigger_data.trigger_exist = triggers_exist_json->valueint;
-    printf("2");
+    
     trigger_data.trigger_list = trigger_list;
-    printf("3");
+    
 
     return trigger_data;
 

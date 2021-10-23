@@ -2,11 +2,12 @@
 #include<SDL2/SDL.h>
 #include<SDL2/SDL_image.h>
 #include"loader.h"
+#include"main.h"
 
-imageLoad load(SDL_Renderer *rend, SDL_Window *win,char* image, float scale){
+imageLoad load(SDL_Renderer *rend, SDL_Window *win,char* image, int scale){
     SDL_Surface* surface = IMG_Load(image);
         if(!surface){
-            printf("error creating window %s\n", SDL_GetError());
+            printf("error creating window%s\n",SDL_GetError());
             SDL_DestroyRenderer(rend);
             SDL_DestroyWindow(win);
             SDL_Quit();
@@ -29,10 +30,17 @@ imageLoad load(SDL_Renderer *rend, SDL_Window *win,char* image, float scale){
 
     // get dimensions of image
     SDL_QueryTexture(tex, NULL, NULL, &rect.w, &rect.h);
-    if(scale){
+    rect.x = 100;
+    rect.y = 100;
+
+    //if(scale){
         rect.w *= scale;
         rect.h *= scale;
-    };
+        /*if(x == 0 && y == 0){
+            rect.x = (WINDOW_WIDTH - rect.w)/2;
+            rect.y = (WINDOW_HEIGHT - rect.y)/2;
+        }*/
+    //};
 
     imageLoad temp;
     temp.rect = rect;

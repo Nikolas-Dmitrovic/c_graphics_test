@@ -10,5 +10,6 @@ typedef struct{
 
 }imageLoad;
 
-imageLoad load(SDL_Renderer *rend, SDL_Window *win,char* image, float scale);
+// set x and y to 0 to render image in the center of the screen
+imageLoad load(SDL_Renderer *rend, SDL_Window *win,char* image, int scale);
 #endif
