@@ -19,39 +19,25 @@ level parse_file(char *filename){
 
     char *buffer = _alloca(buffer_memory);
 
-    //read:
-        //fread(buffer, buffer_memory, 1, fp);
-    //fread(buffer, 1024, 1, fp);
-    // checks if the buffer file is full
-    // if full it frees the buffer
-    // allocates more memory
-    // and goes back to read
-    //if(&buffer[buffer_memory-1] != NULL) printf("4 \n");
-    //buffer_memory = buffer_memory * 100;
-    //printf("%i \n", buffer_memory);
-    //buffer = realloc(buffer, buffer_memory);
+    // takes the file reads it into the buffer string
     fread(buffer, 10000, 1, fp);
-    //printf("%i", buffer[2]);
-    //if(&buffer[buffer_memory - 1] != NULL) printf("4 \n");
-    //printf("3 \n");
-
+    
+    // json file
     cJSON *json = cJSON_Parse(buffer);
 
-
-
-    printf("1 \n");
+    // parsing of json componations and assignes it into its apropriate variable
+    /*
     background background_data = parse_background_json(json);
     main_character main_character_data = parse_main_character_data(json);
     npc npc_data = parse_npc(json);
     trigger_list trigger_data = parse_triggers(json);
-    level_data.background_data = background_data;
-    level_data.main_character_data = main_character_data;
-    level_data.npc_data = npc_data;
-    level_data.trigger_data = trigger_data;
-    printf("2 \n");
+    */
 
-
-
+    level_data.background_data = parse_background_json(json);
+    level_data.main_character_data = parse_main_character_data(json);
+    level_data.npc_data = parse_npc(json);
+    level_data.trigger_data = parse_triggers(json);
+    
     return level_data;
 };
 
