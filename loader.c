@@ -34,8 +34,8 @@ imageLoad load(SDL_Renderer *rend, SDL_Window *win,char* image, int scale){
     rect.y = 100;
 
     //if(scale){
-        rect.w *= scale;
-        rect.h *= scale;
+    rect.w *= scale;
+    rect.h *= scale;
         /*if(x == 0 && y == 0){
             rect.x = (WINDOW_WIDTH - rect.w)/2;
             rect.y = (WINDOW_HEIGHT - rect.y)/2;

@@ -15,59 +15,36 @@ int collison(trigger trigger1, SDL_Rect player_rect, vectorPos *points){
     // make a rect for trigger
     SDL_Rect trigger_rect;
     trigger_rect.h = trigger1.dim_y;
-    trigger_rect.w = trigger1.dim_x;
+    trigger_rect.w = trigger1.dim_y;
     trigger_rect.x = trigger1.pos_x;
     trigger_rect.y = trigger1.pos_y;
 
-    // TODO implement a return statment to return a value when a collsion is detected
 
+    //top right corner
+    if((player_rect.x >trigger_rect.x && player_rect.x < (trigger_rect.x+trigger_rect.w)) || player_rect.y >trigger_rect.y && player_rect.y < (trigger_rect.y+trigger_rect.h) )printf("top right \n");
 
-    // triggers are rightside domenent
-    // whole right side
-    if(((player_rect.x + player_rect.w) > trigger_rect.x) && ((player_rect.x+player_rect.w) < (trigger_rect.x+trigger_rect.w))){
-        
-        // from bottom
-        if(player_rect.y > trigger_rect.y && player_rect.y < (trigger_rect.y+trigger_rect.h)) return 1;
-        // from top
-        if((player_rect.y + player_rect.h) > trigger_rect.y && (player_rect.y + player_rect.h) < (trigger_rect.y+trigger_rect.h)) return 1;
+    //bottom right corner
+    if((player_rect.x >trigger_rect.x && player_rect.x < (trigger_rect.x+trigger_rect.w)) || (player_rect.y+player_rect.h) >trigger_rect.y && (player_rect.y+player_rect.h) < (trigger_rect.y+trigger_rect.h) ){
+        printf("bottom right\n");}
 
-        // if the obsticle is inbetween the top and bottom of the character
-        if(trigger_rect.y > player_rect.y && (trigger_rect.y+trigger_rect.h) < (player_rect.y+player_rect.h)) return 1;
+    //top left corner
+    if(((player_rect.x + player_rect.w) >trigger_rect.x && (player_rect.x + player_rect.w) < (trigger_rect.x+trigger_rect.w)) || player_rect.y >trigger_rect.y && player_rect.y < (trigger_rect.y+trigger_rect.h) ) printf("top left\n");
 
-    }else if(((player_rect.x > trigger_rect.x)) && player_rect.x <(trigger_rect.x+trigger_rect.w)){
+    //bottom left
+    if(((player_rect.x + player_rect.w) >trigger_rect.x && (player_rect.x + player_rect.w) < (trigger_rect.x+trigger_rect.w)) || player_rect.y >trigger_rect.y && player_rect.y < (trigger_rect.y+trigger_rect.h) ){
 
-        // from bottom
-        if(player_rect.y > trigger_rect.y && player_rect.y < (trigger_rect.y+trigger_rect.h)) return 1;
-        // from top
-        if((player_rect.y + player_rect.h) > trigger_rect.y && (player_rect.y + player_rect.h) < (trigger_rect.y+trigger_rect.h)) return 1;
+    printf("top left\n");
+    }
 
-        // if the obsticle is inbetween the top and bottom of the character
-        if(trigger_rect.y > player_rect.y && (trigger_rect.y+trigger_rect.h) < (player_rect.y+player_rect.h)) return 1;
-
-    }else return 0;
-
-    return 0;
+    return 1;
 
 }
 
 int check_triggers(trigger_list *trigger_list, SDL_Rect player_rect, vectorPos *points){
-
-    // implement a stop movement shit
-    // maybe something like if colliosn returns 1
-    // firgure out what button is depressed and revese the movement
-
-    // create an int var to pass into movement function
-    // fill the int var with a value depending what button was depresed
-
-    // pass the int var into this function
-    // pass the dest vars into this function
-    // subtract or add SPEED from the dest vars to undo a movement if a collison is detected
     if(trigger_list == NULL) return 1;
     for(int i = 0; i < trigger_list->number_of_triggers; i++){
         trigger temp_trigger = trigger_list->trigger_list[i];
-        if(collison(temp_trigger, player_rect, points) == 1){
-            // do something
-        }
+        collison(temp_trigger, player_rect, points);
     }
 
     return 0;
