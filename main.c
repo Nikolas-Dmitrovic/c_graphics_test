@@ -81,7 +81,6 @@ int main(int argc, char* argv[]){
         dest.x = (int)points.x_pos;
         dest.y = (int)points.y_pos;
 
-
         //clear the window
         SDL_RenderClear(rend);
 
@@ -93,18 +92,24 @@ int main(int argc, char* argv[]){
         //SDL_RenderPresent(rend);
         
         // puts all the trigger rects into 
+
+        check_triggers(&level1.trigger_data, &dest, &points, &dir);
+
         RECT_list rects;
         fill_trigger_rect_list(&level1.trigger_data, &rects);
         show_triggers(&rects, rend, 0);
 
         show_player_rect(dest, rend, 0);
 
+        // TODO change check_triggers to work with points struct insted of dest
+        //check_triggers(&level1.trigger_data, &dest, &points, &dir);
+
+
 
         //printf("%i \n", dest1.y);
         SDL_RenderCopy(rend,image2.texture, NULL, &dest);
         SDL_RenderPresent(rend);
 
-        check_triggers(&level1.trigger_data, dest, &points);
 
 
         // wait 1/60th of a second

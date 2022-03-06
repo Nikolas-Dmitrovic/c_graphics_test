@@ -41,8 +41,8 @@
     },
     "triggers": {
       "triggers_exist": 0,
-      "number_of_triggers": 1,
-      "trigger list":["1"],
+      "number_of_triggers": 7,
+      "trigger list":["1","2","3","4","5","6","7"],
       "triggers_info": {
         "1": {
           "type": "collison",
@@ -50,6 +50,54 @@
           "pos_y": 520,
           "dim_x": 254,
           "dim_y": 80,
+          "trigger_event": null
+        },
+        "2":{
+          "type": "collison",
+          "pos_x": 1170,
+          "pos_y": 530,
+          "dim_x": 180,
+          "dim_y": 55,
+          "trigger_event": null
+        },
+        "3":{
+          "type": "collison",
+          "pos_x": 1495,
+          "pos_y": 525,
+          "dim_x": 180,
+          "dim_y": 60,
+          "trigger_event": null
+        },
+        "4":{
+          "type": "collison",
+          "pos_x": 325,
+          "pos_y": 765,
+          "dim_x": 200,
+          "dim_y": 60,
+          "trigger_event": null
+        },
+        "5":{
+          "type": "collison",
+          "pos_x": 1170,
+          "pos_y": 760,
+          "dim_x": 200,
+          "dim_y": 66,
+          "trigger_event": null
+        },
+        "6":{
+          "type": "collison",
+          "pos_x": 1490,
+          "pos_y": 765,
+          "dim_x": 185,
+          "dim_y": 60,
+          "trigger_event": null
+        },
+        "7":{
+          "type": "collison",
+          "pos_x": 425,
+          "pos_y": 235,
+          "dim_x": 1300,
+          "dim_y": 115,
           "trigger_event": null
         }
       }

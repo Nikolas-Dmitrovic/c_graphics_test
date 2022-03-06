@@ -76,3 +76,16 @@ int movement(SDL_Event *event ,SDL_Rect *player_rect, int *close_requested, vect
     points->x_pos += points->x_vel/60;
     points->y_pos += points->y_vel/60;
 }
+
+int stop_movement(SDL_Rect *player_rect, vectorPos *points, directions *dir){
+    // determin velocity
+    points->x_vel = points->y_vel = 0;
+    if(dir->up && !dir->down) points->y_vel = SPEED;
+    if(dir->down && !dir->up) points->y_vel = -SPEED;
+    if(dir->left && !dir->right) points->x_vel = +SPEED;
+    if(dir->right && !dir->left) points->x_vel = -SPEED;
+
+    // update pos
+    points->x_pos += points->x_vel/30;
+    points->y_pos += points->y_vel/30;
+}
